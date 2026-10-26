@@ -21,6 +21,15 @@
 
 ## Features
 
+- **Point-of-Sale System** — Streamline order processing and checkout through a centralized interface.
+- **Role-Based Authentication** — Provide separate login access and permissions for administrators and regular staff.
+- **Order Management** — Organize customer orders and track their status throughout the transaction process.
+- **Menu Management** — Manage café products, including their names, prices, and availability.
+- **Transaction Processing** — Calculate order totals and maintain transaction records.
+- **Sales Tracking** — Record sales to support daily transaction monitoring.
+- **Persistent Data Storage** — Store products, orders, and transaction data in PostgreSQL using Prisma.
+- **Responsive User Interface** — Provide an intuitive interface designed for efficient day-to-day café operations.
+
 ## Architecture
 
 ## Getting Started
@@ -44,4 +53,4 @@ Full Stack Developer focused on building scalable web applications and intuitive
 
 ---
 
-_Tipon — A simpler way to keep track of your spending._
+_SHOT Cafe POS — Brewing efficiency into every transaction._
