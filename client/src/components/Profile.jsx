@@ -1,5 +1,5 @@
-import StaffPic from '../assets/1.png'
-import AdminPic from '../assets/2.png'
+import StaffPic from '../assets/pics/1.png'
+import AdminPic from '../assets/pics/2.png'
 import Notification from '../assets/notification-02-stroke-rounded'
 
 export default function Profile() {
