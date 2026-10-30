@@ -24,9 +24,9 @@ function App() {
     }
   }, [])
 
-  const ProtectedRoute = ({ children }) => {
-    return isLoggedIn ? children : <Navigate to="/signin" />
-  }
+  // const ProtectedRoute = ({ children }) => {
+  //   return isLoggedIn ? children : <Navigate to="/signin" />
+  // }
 
   return (
     <Router>
@@ -38,18 +38,18 @@ function App() {
         <Route
           path="/*"
           element={
-            <ProtectedRoute>
-              <div className="flex bg-opaque font-custom overflow-hidden">
-                <Sidebar />
-                <Routes>
-                  <Route path="/" element={<Home />} />
-                  <Route path="/menu" element={<Menu />} />
-                  <Route path="/products" element={<Products />} />
-                  <Route path="/sales" element={<Sales />} />
-                  <Route path="/settings" element={<Settings />} />
-                </Routes>
-              </div>
-            </ProtectedRoute>
+            // <ProtectedRoute>
+            <div className="flex bg-opaque font-custom overflow-hidden">
+              <Sidebar />
+              <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/menu" element={<Menu />} />
+                <Route path="/products" element={<Products />} />
+                <Route path="/sales" element={<Sales />} />
+                <Route path="/settings" element={<Settings />} />
+              </Routes>
+            </div>
+            // </ProtectedRoute>
           }
         />
       </Routes>
