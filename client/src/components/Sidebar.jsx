@@ -10,6 +10,7 @@ import HomeIcon from '../assets/home-11-stroke-rounded.jsx'
 import MenuIcon from '../assets/coffee-02-stroke-rounded.jsx'
 import InventoryIcon from '../assets/shipping-truck-02-stroke-rounded.jsx'
 import SalesIcon from '../assets/clock-01-stroke-rounded.jsx'
+import AccountsIcon from '../assets/user-stroke-rounded.jsx'
 import SettingsIcon from '../assets/settings-01.jsx'
 import LogoutIcon from '../assets/logout-03-stroke-rounded.jsx'
 
@@ -36,6 +37,7 @@ export default function Sidebar() {
     { path: '/menu', Icon: MenuIcon, label: 'Menu' },
     { path: '/products', Icon: InventoryIcon, label: 'Products' },
     { path: '/sales', Icon: SalesIcon, label: 'Sales' },
+    { path: '/accounts', Icon: AccountsIcon, label: 'Accounts' },
     { path: '/settings', Icon: SettingsIcon, label: 'Settings' },
     { path: '/logout', Icon: LogoutIcon, label: 'Logout' },
   ]
