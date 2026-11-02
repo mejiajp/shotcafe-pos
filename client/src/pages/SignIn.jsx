@@ -6,6 +6,7 @@ import logo from '../assets/logo/logo.png'
 import SubmitIcon from '../assets/svg/arrow-right-02-stroke-rounded.jsx'
 import Eye from '../assets/svg/user-stroke-rounded.jsx'
 import EyeOff from '../assets/svg/view-off-slash-stroke-rounded.jsx'
+import titleFormat from '../lib/titleFormat.jsx'
 
 function SignIn({ setIsLoggedIn }) {
   const navigate = useNavigate()
