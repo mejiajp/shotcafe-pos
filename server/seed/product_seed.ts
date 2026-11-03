@@ -5,7 +5,7 @@ import path from "path";
 const prisma = new PrismaClient();
 
 // Load product data from the external JSON file
-const productsFilePath = path.join(__dirname, "../assets/seeds/products.json");
+const productsFilePath = path.join(__dirname, "seeds/products.json");
 const products = JSON.parse(fs.readFileSync(productsFilePath, "utf-8"));
 
 async function main() {
