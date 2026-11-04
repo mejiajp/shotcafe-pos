@@ -45,14 +45,14 @@ export default function Sidebar() {
   return (
     <div className="h-screen bg-tertiary w-[80%] sm:w-[120px]">
       {/* Full words for small screens */}
-      <div className="flex flex-col h-full sm:hidden">
+      {/* <div className="flex flex-col h-full sm:hidden">
         <Profile className="" />
         {navItems.map((item) => (
           <NavLink key={item.path} to={item.path}>
             <IconLabels Image={item.Icon} Label={item.label} />
           </NavLink>
         ))}
-      </div>
+      </div> */}
 
       <div className="flex-col w-full h-full items-center justify-between hidden sm:flex">
         <div className="flex flex-col items-center w-full">
