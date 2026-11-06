@@ -37,6 +37,38 @@ async function main() {
     L: 40,
   };
 
+  // Collect all unique product names across all order summaries
+  const productNames = Array.from(
+    new Set<string>(
+      data.flatMap((input: any) =>
+        input.orders.map((order: any) => order.productName as string)
+      )
+    )
+  );
+
+  // Fetch all required products in a single query
+  const products = await prisma.product.findMany({
+    where: {
+      name: {
+        in: productNames,
+      },
+    },
+  });
+
+  // Map product names to their complete records
+  const productMap = new Map(
+    products.map((product) => [product.name, product])
+  );
+
+  console.log(`Fetched ${products.length} unique products.`);
+
+  // Validate that all referenced products exist
+  for (const name of productNames) {
+    if (!productMap.has(name)) {
+      throw new Error(`Product not found: ${name}`);
+    }
+  }
+
   // Array to store all created order summaries
   const orderSummaries: any[] = [];
 
@@ -45,29 +77,15 @@ async function main() {
 
     // Fetch the user
     const user = await prisma.user.findFirst({
-      where: { username: input.user },
+      where: {
+        username: input.user,
+      },
     });
 
     if (!user) {
       console.error(`User not found: ${input.user}`);
       continue;
     }
-
-    // Fetch products and their base prices
-    const productNames = input.orders.map((order: any) => order.productName);
-
-    const products = await prisma.product.findMany({
-      where: {
-        name: {
-          in: productNames,
-        },
-      },
-    });
-
-    // Map product names to their complete records
-    const productMap = new Map(
-      products.map((product) => [product.name, product])
-    );
 
     // Prepare orders with adjusted prices
     const orders = input.orders.map((order: any) => {
@@ -110,8 +128,7 @@ async function main() {
           create: orders,
         },
         totalPrice: orders.reduce(
-          (sum: number, order: { moddedPrice: number }) =>
-            sum + order.moddedPrice,
+          (sum: number, order: any) => sum + order.moddedPrice,
           0
         ),
         createdAt,
@@ -147,6 +164,7 @@ async function main() {
 main()
   .catch((e: Error) => {
     console.error(e.message);
+    process.exitCode = 1;
   })
   .finally(async () => {
     await prisma.$disconnect();
