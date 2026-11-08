@@ -5,7 +5,11 @@ import jwt from "jsonwebtoken";
 const router = Router();
 const prisma = new PrismaClient();
 
-const SECRET_KEY = "your_secret_key"; // Use a strong secret key
+const JWT_SECRET = process.env.JWT_SECRET;
+
+if (!JWT_SECRET) {
+  throw new Error("SESSION_SECRET is not configured");
+}
 
 // Middleware to authenticate token
 const authenticateToken = (req: Request, res: Response, next: NextFunction) => {
@@ -16,7 +20,7 @@ const authenticateToken = (req: Request, res: Response, next: NextFunction) => {
     return res.status(401).json({ error: "Unauthorized, token missing" });
   }
 
-  jwt.verify(token, SECRET_KEY, (err, user) => {
+  jwt.verify(token, JWT_SECRET, (err, user) => {
     if (err) {
       return res.status(403).json({ error: "Invalid token" });
     }
@@ -44,7 +48,7 @@ router.post("/signin", async (req: Request, res: Response) => {
 
     const token = jwt.sign(
       { id: user.id, username: user.username, role: user.role },
-      SECRET_KEY,
+      JWT_SECRET,
       { expiresIn: "8h" }
     );
 
